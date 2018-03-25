@@ -1,0 +1,1064 @@
+
+
+I. Cloud Native Applications - 云本地应用
+II. Spring Cloud Config - 配置
+III. Spring Cloud Netflix - Netflix技术栈
+IV. Spring Cloud OpenFeign - 集成Spring Boot应用
+V. Spring Cloud Stream - 消息驱动
+VI. Binder Implementations - Stream绑定者实现
+VII. Spring Cloud Bus - 消息总线
+VIII. Spring Cloud Sleuth - 分布式服务跟踪
+IX. Spring Cloud Consul - 服务发现和配置管理
+X. Spring Cloud Zookeeper - 服务发现和配置管理
+XI. Spring Cloud Security - 安全(OAuth2)
+XII. Spring Cloud for Cloud Foundry - CloudFoundry支持(X)
+XIII. Spring Cloud Contract - 用户驱动契约
+XIV. Spring Cloud Vault - 外部配置的客户端支持
+XV. Spring Cloud Gateway - 网关
+
+
+
+1. Features
+
+===============================================================================
+I. Cloud Native Applications
+===============================================================================
+
+===============================================================================
+2. Spring Cloud Context: Application Context Services
+2.1. The Bootstrap Application Context
+2.2. Application Context Hierarchies
+2.3. Changing the Location of Bootstrap Properties
+2.4. Overriding the Values of Remote Properties
+2.5. Customizing the Bootstrap Configuration
+2.6. Customizing the Bootstrap Property Sources
+2.7. Environment Changes
+2.8. Refresh Scope
+2.9. Encryption and Decryption
+2.10. Endpoints
+
+===============================================================================
+3. Spring Cloud Commons: Common Abstractions
+3.1. @EnableDiscoveryClient
+3.1.1. Health Indicator
+3.2. ServiceRegistry
+3.2.1. ServiceRegistry Auto-Registration
+3.2.2. Service Registry Actuator Endpoint
+3.3. Spring RestTemplate as a Load Balancer Client
+3.4. Spring WebClient as a Load Balancer Client
+3.4.1. Retrying Failed Requests
+3.5. Multiple RestTemplate objects
+3.6. Spring WebFlux WebClient as a Load Balancer Client
+3.7. Ignore Network Interfaces
+3.8. HTTP Client Factories
+3.9. Enabled Features
+3.9.1. Feature types
+3.9.2. Declaring features
+
+===============================================================================
+II. Spring Cloud Config
+===============================================================================
+
+===============================================================================
+4. Quick Start
+4.1. Client Side Usage
+
+===============================================================================
+5. Spring Cloud Config Server
+5.1. Environment Repository
+5.1.1. Git Backend
+Placeholders in Git URI
+Pattern Matching and Multiple Repositories
+Authentication
+Authentication with AWS CodeCommit
+Git SSH configuration using properties
+Placeholders in Git Search Paths
+Force pull in Git Repositories
+5.1.2. Version Control Backend Filesystem Use
+5.1.3. File System Backend
+5.1.4. Vault Backend
+Multiple Properties Sources
+5.1.5. Sharing Configuration With All Applications
+File Based Repositories
+Vault Server
+5.1.6. JDBC Backend
+5.1.7. Composite Environment Repositories
+Custom Composite Environment Repositories
+5.1.8. Property Overrides
+5.2. Health Indicator
+5.3. Security
+5.4. Encryption and Decryption
+5.5. Key Management
+5.6. Creating a Key Store for Testing
+5.7. Using Multiple Keys and Key Rotation
+5.8. Serving Encrypted Properties
+
+===============================================================================
+6. Serving Alternative Formats
+
+===============================================================================
+7. Serving Plain Text
+
+===============================================================================
+8. Embedding the Config Server
+
+===============================================================================
+9. Push Notifications and Spring Cloud Bus
+
+===============================================================================
+10. Spring Cloud Config Client
+10.1. Config First Bootstrap
+10.2. Discovery First Bootstrap
+10.3. Config Client Fail Fast
+10.4. Config Client Retry
+10.5. Locating Remote Configuration Resources
+10.6. Security
+10.6.1. Health Indicator
+10.6.2. Providing A Custom RestTemplate
+10.6.3. Vault
+10.7. Vault
+10.7.1. Nested Keys In Vault
+
+===============================================================================
+III. Spring Cloud Netflix
+===============================================================================
+
+===============================================================================
+11. Service Discovery: Eureka Clients
+11.1. How to Include Eureka Client
+11.2. Registering with Eureka
+11.3. Authenticating with the Eureka Server
+11.4. Status Page and Health Indicator
+11.5. Registering a Secure Application
+11.6. Eureka’s Health Checks
+11.7. Eureka Metadata for Instances and Clients
+11.7.1. Using Eureka on Cloudfoundry
+11.7.2. Using Eureka on AWS
+11.7.3. Changing the Eureka Instance ID
+11.8. Using the EurekaClient
+11.8.1. EurekaClient without Jersey
+11.9. Alternatives to the native Netflix EurekaClient
+11.10. Why is it so Slow to Register a Service?
+11.11. Zones
+
+===============================================================================
+12. Service Discovery: Eureka Server
+12.1. How to Include Eureka Server
+12.2. How to Run a Eureka Server
+12.3. High Availability, Zones and Regions
+12.4. Standalone Mode
+12.5. Peer Awareness
+12.6. Prefer IP Address
+
+===============================================================================
+13. Circuit Breaker: Hystrix Clients
+13.1. How to Include Hystrix
+13.2. Propagating the Security Context or using Spring Scopes
+13.3. Health Indicator
+13.4. Hystrix Metrics Stream
+
+===============================================================================
+14. Circuit Breaker: Hystrix Dashboard
+
+===============================================================================
+15. Hystrix Timeouts And Ribbon Clients
+15.1. How to Include Hystrix Dashboard
+15.2. Turbine
+15.3. Turbine Stream
+
+===============================================================================
+16. Client Side Load Balancer: Ribbon
+16.1. How to Include Ribbon
+16.2. Customizing the Ribbon Client
+16.3. Customizing default for all Ribbon Clients
+16.4. Customizing the Ribbon Client using properties
+16.5. Using Ribbon with Eureka
+16.6. Example: How to Use Ribbon Without Eureka
+16.7. Example: Disable Eureka use in Ribbon
+16.8. Using the Ribbon API Directly
+16.9. Caching of Ribbon Configuration
+16.10. How to Configure Hystrix thread pools
+16.11. How to Provide a Key to Ribbon’s IRule
+
+===============================================================================
+17. External Configuration: Archaius
+
+===============================================================================
+18. Router and Filter: Zuul
+18.1. How to Include Zuul
+18.2. Embedded Zuul Reverse Proxy
+18.3. Zuul Http Client
+18.4. Cookies and Sensitive Headers
+18.5. Ignored Headers
+18.6. Management Endpoints
+18.6.1. Routes Endpoint
+18.6.2. Filters Endpoint
+18.7. Strangulation Patterns and Local Forwards
+18.8. Uploading Files through Zuul
+18.9. Query String Encoding
+18.10. Plain Embedded Zuul
+18.11. Disable Zuul Filters
+18.12. Providing Hystrix Fallbacks For Routes
+18.13. Zuul Timeouts
+18.14. Rewriting Location header
+18.15. Zuul Developer Guide
+18.15.1. The Zuul Servlet
+18.15.2. Zuul RequestContext
+18.15.3. @EnableZuulProxy vs. @EnableZuulServer
+18.15.4. @EnableZuulServer Filters
+18.15.5. @EnableZuulProxy Filters
+18.15.6. Custom Zuul Filter examples
+18.15.7. How to Write a Pre Filter
+18.15.8. How to Write a Route Filter
+18.15.9. How to Write a Post Filter
+18.15.10. How Zuul Errors Work
+18.15.11. Zuul Eager Application Context Loading
+
+===============================================================================
+19. Polyglot support with Sidecar
+
+===============================================================================
+20. Metrics Backend: Atlas
+20.1. Using Atlas
+
+===============================================================================
+21. Retrying Failed Requests
+21.1. BackOff Policies
+21.2. Configuration
+21.2.1. Zuul
+
+===============================================================================
+22. HTTP Clients
+
+===============================================================================
+IV. Spring Cloud OpenFeign
+===============================================================================
+
+===============================================================================
+23. Declarative REST Client: Feign
+23.1. How to Include Feign
+23.2. Overriding Feign Defaults
+23.3. Creating Feign Clients Manually
+23.4. Feign Hystrix Support
+23.5. Feign Hystrix Fallbacks
+23.6. Feign and @Primary
+23.7. Feign Inheritance Support
+23.8. Feign request/response compression
+23.9. Feign logging
+
+===============================================================================
+V. Spring Cloud Stream
+===============================================================================
+
+===============================================================================
+24. Introducing Spring Cloud Stream
+
+===============================================================================
+25. Main Concepts
+25.1. Application Model
+25.1.1. Fat JAR
+25.2. The Binder Abstraction
+25.3. Persistent Publish-Subscribe Support
+25.4. Consumer Groups
+25.5. Consumer Types
+25.5.1. Durability
+25.6. Partitioning Support
+
+===============================================================================
+26. Programming Model
+26.1. Declaring and Binding Producers and Consumers
+26.1.1. Triggering Binding Via @EnableBinding
+26.1.2. @Input and @Output
+Customizing Channel Names
+Source, Sink, and Processor
+26.1.3. Accessing Bound Channels
+Injecting the Bound Interfaces
+Injecting Channels Directly
+26.1.4. Producing and Consuming Messages
+Native Spring Integration Support
+Spring Integration Error Channel Support
+Message Channel Binders and Error Channels
+Using @StreamListener for Automatic Content Type Handling
+Using @StreamListener for dispatching messages to multiple methods
+Using Polled Consumers
+26.1.5. Reactive Programming Support
+Reactor-based handlers
+Reactive Sources
+26.1.6. Aggregation
+Configuring aggregate application
+Configuring binding service properties for non self contained aggregate application
+
+===============================================================================
+27. Binders
+27.1. Producers and Consumers
+27.2. Binder SPI
+27.3. Binder Detection
+27.3.1. Classpath Detection
+27.4. Multiple Binders on the Classpath
+27.5. Connecting to Multiple Systems
+27.6. Binder configuration properties
+
+===============================================================================
+28. Configuration Options
+28.1. Spring Cloud Stream Properties
+28.2. Binding Properties
+28.2.1. Properties for Use of Spring Cloud Stream
+28.2.2. Consumer properties
+28.2.3. Producer Properties
+28.3. Using dynamically bound destinations
+
+===============================================================================
+29. Content Type and Transformation
+29.1. MIME types
+29.2. Channel contentType and Message Headers
+29.3. ContentType handling for output channels
+29.4. ContentType handling for input channels
+29.5. Customizing message conversion
+29.6. @StreamListener and Message Conversion
+
+===============================================================================
+30. Schema evolution support
+30.1. Apache Avro Message Converters
+30.2. Converters with schema support
+30.3. Schema Registry Support
+30.4. Schema Registry Server
+30.4.1. Schema Registry Server API
+POST /
+GET /{subject}/{format}/{version}
+GET /{subject}/{format}
+GET /schemas/{id}
+DELETE /{subject}/{format}/{version}
+DELETE /schemas/{id}
+DELETE /{subject}
+30.5. Schema Registry Client
+30.5.1. Using Confluent’s Schema Registry
+30.5.2. Schema Registry Client properties
+30.6. Avro Schema Registry Client Message Converters
+30.6.1. Avro Schema Registry Message Converter properties
+30.7. Schema Registration and Resolution
+30.7.1. Schema Registration Process (Serialization)
+30.7.2. Schema Resolution Process (Deserialization)
+
+===============================================================================
+31. Inter-Application Communication
+31.1. Connecting Multiple Application Instances
+31.2. Instance Index and Instance Count
+31.3. Partitioning
+31.3.1. Configuring Output Bindings for Partitioning
+Configuring Input Bindings for Partitioning
+
+===============================================================================
+32. Testing
+32.1. Disabling the test binder autoconfiguration
+
+===============================================================================
+33. Health Indicator
+
+===============================================================================
+34. Metrics Emitter
+
+===============================================================================
+35. Samples
+
+===============================================================================
+36. Getting Started
+36.1. Deploying Stream applications on CloudFoundry
+
+===============================================================================
+VI. Binder Implementations
+===============================================================================
+
+===============================================================================
+37. Apache Kafka Binder
+37.1. Usage
+37.2. Apache Kafka Binder Overview
+37.3. Configuration Options
+37.3.1. Kafka Binder Properties
+37.3.2. Kafka Consumer Properties
+37.3.3. Kafka Producer Properties
+37.3.4. Usage examples
+Example: Setting autoCommitOffset false and relying on manual acking.
+Example: security configuration
+Example: Pausing and Resuming the Consumer
+Using the binder with Apache Kafka 0.10
+Excluding Kafka broker jar from the classpath of the binder based application
+37.4. Error Channels
+37.5. Kafka Metrics
+37.6. Dead-Letter Topic Processing
+37.7. Partitioning with the Kafka Binder
+37.8. Kafka Streams Binding Capabilities of Spring Cloud Stream
+37.8.1. Usage example of high level streams DSL
+37.8.2. Multiple Input bindings on the inbound
+37.8.3. Support for branching in Kafka Streams API
+37.8.4. Message conversion in Spring Cloud Stream Kafka Streams applications
+Outbound serialization
+Inbound Deserialization
+Error handling on Deserialization exceptions
+Handling Non-Deserialization exceptions
+37.8.5. Support for interactive queries
+37.8.6. Kafka Streams properties
+
+===============================================================================
+38. RabbitMQ Binder
+38.1. Usage
+38.2. RabbitMQ Binder Overview
+38.3. Configuration Options
+38.3.1. RabbitMQ Binder Properties
+38.3.2. RabbitMQ Consumer Properties
+38.3.3. Rabbit Producer Properties
+38.4. Retry With the RabbitMQ Binder
+38.4.1. Overview
+38.4.2. Putting it All Together
+38.5. Error Channels
+38.6. Dead-Letter Queue Processing
+38.6.1. Non-Partitioned Destinations
+38.6.2. Partitioned Destinations
+republishToDlq=false
+republishToDlq=true
+38.7. Partitioning with the RabbitMQ Binder
+
+===============================================================================
+VII. Spring Cloud Bus
+===============================================================================
+
+===============================================================================
+39. Quick Start
+
+===============================================================================
+40. Addressing an Instance
+
+===============================================================================
+41. Addressing all instances of a service
+
+===============================================================================
+42. Service ID must be unique
+
+===============================================================================
+43. Customizing the Message Broker
+
+===============================================================================
+44. Tracing Bus Events
+
+===============================================================================
+45. Broadcasting Your Own Events
+45.1. Registering events in custom packages
+
+===============================================================================
+VIII. Spring Cloud Sleuth
+===============================================================================
+
+===============================================================================
+46. Introduction
+46.1. Terminology
+46.2. Purpose
+46.2.1. Distributed tracing with Zipkin
+46.2.2. Visualizing errors
+46.2.3. Distributed tracing with Brave
+46.2.4. Live examples
+46.2.5. Log correlation
+JSON Logback with Logstash
+46.2.6. Propagating Span Context
+Baggage vs. Span Tags
+46.3. Adding to the project
+46.3.1. Only Sleuth (log correlation)
+46.3.2. Sleuth with Zipkin via HTTP
+46.3.3. Sleuth with Zipkin via RabbitMQ or Kafka
+
+===============================================================================
+47. Additional resources
+
+===============================================================================
+48. Features
+48.1. Introduction to Brave
+48.1.1. Tracing
+48.1.2. Tracing
+48.1.3. Local Tracing
+48.1.4. Customizing spans
+48.1.5. Implicitly looking up the current span
+48.1.6. RPC tracing
+One-Way tracing
+
+===============================================================================
+49. Sampling
+49.1. Declarative sampling
+49.2. Custom sampling
+49.3. Sampling in Spring Cloud Sleuth
+
+===============================================================================
+50. Propagation
+50.1. Propagating extra fields
+50.1.1. Prefixed fields
+50.1.2. Extracting a propagated context
+50.1.3. Sharing span IDs between client and server
+50.1.4. Implementing Propagation
+
+===============================================================================
+51. Current Tracing Component
+
+===============================================================================
+52. Current Span
+52.1. Setting a span in scope manually
+
+===============================================================================
+53. Instrumentation
+
+===============================================================================
+54. Span lifecycle
+54.1. Creating and finishing spans
+54.2. Continuing spans
+54.3. Creating spans with an explicit parent
+
+===============================================================================
+55. Naming spans
+55.1. @SpanName annotation
+55.2. toString() method
+
+===============================================================================
+56. Managing spans with annotations
+56.1. Rationale
+56.2. Creating new spans
+56.3. Continuing spans
+56.4. More advanced tag setting
+56.4.1. Custom extractor
+56.4.2. Resolving expressions for value
+56.4.3. Using toString method
+
+===============================================================================
+57. Customizations
+57.1. Spring Integration
+57.2. HTTP
+57.3. TraceFilter
+57.4. Custom service name
+57.5. Customization of reported spans
+57.6. Host locator
+
+===============================================================================
+58. Sending spans to Zipkin
+
+===============================================================================
+59. Zipkin Stream Span Consumer
+
+===============================================================================
+60. Integrations
+60.1. OpenTracing
+60.2. Runnable and Callable
+60.3. Hystrix
+60.3.1. Custom Concurrency Strategy
+60.3.2. Manual Command setting
+60.4. RxJava
+60.5. HTTP integration
+60.5.1. HTTP Filter
+60.5.2. HandlerInterceptor
+60.5.3. Async Servlet support
+60.5.4. WebFlux support
+60.6. HTTP client integration
+60.6.1. Synchronous Rest Template
+60.6.2. Asynchronous Rest Template
+Multiple Asynchronous Rest Templates
+60.6.3. WebClient
+60.6.4. Traverson
+60.7. Feign
+60.8. Asynchronous communication
+60.8.1. @Async annotated methods
+60.8.2. @Scheduled annotated methods
+60.8.3. Executor, ExecutorService and ScheduledExecutorService
+Customization of Executors
+60.9. Messaging
+60.10. Zuul
+
+===============================================================================
+61. Running examples
+
+===============================================================================
+IX. Spring Cloud Consul
+===============================================================================
+
+===============================================================================
+62. Install Consul
+
+===============================================================================
+63. Consul Agent
+
+===============================================================================
+64. Service Discovery with Consul
+64.1. How to activate
+64.2. Registering with Consul
+64.3. HTTP Health Check
+64.3.1. Metadata and Consul tags
+64.3.2. Making the Consul Instance ID Unique
+64.4. Looking up services
+64.4.1. Using Ribbon
+64.4.2. Using the DiscoveryClient
+
+===============================================================================
+65. Distributed Configuration with Consul
+65.1. How to activate
+65.2. Customizing
+65.3. Config Watch
+65.4. YAML or Properties with Config
+65.5. git2consul with Config
+65.6. Fail Fast
+
+===============================================================================
+66. Consul Retry
+
+===============================================================================
+67. Spring Cloud Bus with Consul
+67.1. How to activate
+
+===============================================================================
+68. Circuit Breaker with Hystrix
+
+===============================================================================
+69. Hystrix metrics aggregation with Turbine and Consul
+
+
+===============================================================================
+X. Spring Cloud Zookeeper
+===============================================================================
+
+===============================================================================
+70. Install Zookeeper
+
+===============================================================================
+71. Service Discovery with Zookeeper
+71.1. How to activate
+71.2. Registering with Zookeeper
+71.3. Using the DiscoveryClient
+
+===============================================================================
+72. Using Spring Cloud Zookeeper with Spring Cloud Netflix Components
+72.1. Ribbon with Zookeeper
+
+===============================================================================
+73. Spring Cloud Zookeeper and Service Registry
+73.1. Instance Status
+
+===============================================================================
+74. Zookeeper Dependencies
+74.1. Using the Zookeeper Dependencies
+74.2. How to activate Zookeeper Dependencies
+74.3. Setting up Zookeeper Dependencies
+74.3.1. Aliases
+74.3.2. Path
+74.3.3. Load balancer type
+74.3.4. Content-Type template and version
+74.3.5. Default headers
+74.3.6. Obligatory dependencies
+74.3.7. Stubs
+74.4. Configuring Spring Cloud Zookeeper Dependencies
+
+===============================================================================
+75. Spring Cloud Zookeeper Dependency Watcher
+75.1. How to activate
+75.2. Registering a listener
+75.3. Presence Checker
+
+===============================================================================
+76. Distributed Configuration with Zookeeper
+76.1. How to activate
+76.2. Customizing
+76.3. ACLs
+
+===============================================================================
+XI. Spring Cloud Security
+===============================================================================
+
+===============================================================================
+77. Quickstart
+77.1. OAuth2 Single Sign On
+77.2. OAuth2 Protected Resource
+
+===============================================================================
+78. More Detail
+78.1. Single Sign On
+78.2. Token Relay
+78.2.1. Client Token Relay
+78.2.2. Client Token Relay in Zuul Proxy
+78.2.3. Resource Server Token Relay
+
+===============================================================================
+79. Configuring Authentication Downstream of a Zuul Proxy
+
+===============================================================================
+XII. Spring Cloud for Cloud Foundry
+===============================================================================
+
+===============================================================================
+80. Discovery
+
+===============================================================================
+81. Single Sign On
+
+===============================================================================
+XIII. Spring Cloud Contract
+===============================================================================
+
+===============================================================================
+82. Spring Cloud Contract
+
+===============================================================================
+83. Spring Cloud Contract Verifier Introduction
+83.1. Why a Contract Verifier?
+83.1.1. Testing issues
+83.2. Purposes
+83.3. How It Works
+83.3.1. Defining the contract
+83.3.2. Client Side
+83.3.3. Server Side
+83.4. Step-by-step Guide to Consumer Driven Contracts (CDC)
+83.4.1. Technical note
+83.4.2. Consumer side (Loan Issuance)
+83.4.3. Producer side (Fraud Detection server)
+83.4.4. Consumer Side (Loan Issuance) Final Step
+83.5. Dependencies
+83.6. Additional Links
+83.6.1. Spring Cloud Contract video
+83.6.2. Readings
+83.7. Samples
+
+===============================================================================
+84. Spring Cloud Contract FAQ
+84.1. Why use Spring Cloud Contract Verifier and not X ?
+84.2. I don’t want to write a contract in Groovy!
+84.3. What is this value(consumer(), producer()) ?
+84.4. How to do Stubs versioning?
+84.4.1. API Versioning
+84.4.2. JAR versioning
+84.4.3. Dev or prod stubs
+84.5. Common repo with contracts
+84.5.1. Repo structure
+84.5.2. Workflow
+84.5.3. Consumer
+84.5.4. Producer
+84.5.5. How can I define messaging contracts per topic not per producer?
+For Maven Project
+For Gradle Project
+84.6. Can I have multiple base classes for tests?
+84.7. How can I debug the request/response being sent by the generated tests client?
+84.7.1. How can I debug the mapping/request/response being sent by WireMock?
+84.7.2. How can I see what got registered in the HTTP server stub?
+84.7.3. Can I reference the request from the response?
+84.7.4. Can I reference text from file?
+
+===============================================================================
+85. Spring Cloud Contract Verifier Setup
+85.1. Gradle Project
+85.1.1. Prerequisites
+85.1.2. Add Gradle Plugin with Dependencies
+85.1.3. Gradle and Rest Assured 2.0
+85.1.4. Snapshot Versions for Gradle
+85.1.5. Add stubs
+85.1.6. Run the Plugin
+85.1.7. Default Setup
+85.1.8. Configure Plugin
+85.1.9. Configuration Options
+85.1.10. Single Base Class for All Tests
+85.1.11. Different Base Classes for Contracts
+85.1.12. Invoking Generated Tests
+85.1.13. Spring Cloud Contract Verifier on the Consumer Side
+85.2. Maven Project
+85.2.1. Add maven plugin
+85.2.2. Maven and Rest Assured 2.0
+85.2.3. Snapshot versions for Maven
+85.2.4. Add stubs
+85.2.5. Run plugin
+85.2.6. Configure plugin
+85.2.7. Configuration Options
+85.2.8. Single Base Class for All Tests
+85.2.9. Different base classes for contracts
+85.2.10. Invoking generated tests
+85.2.11. Maven Plugin and STS
+85.3. Stubs and Transitive Dependencies
+85.4. CI Server setup
+85.5. Scenarios
+85.6. Docker Project
+85.6.1. Short intro to Maven, JARs and Binary storage
+85.6.2. How it works
+Environment Variables
+85.6.3. Example of usage
+85.6.4. Server side (nodejs)
+
+===============================================================================
+86. Spring Cloud Contract Verifier Messaging
+86.1. Integrations
+86.2. Manual Integration Testing
+86.3. Publisher-Side Test Generation
+86.3.1. Scenario 1: No Input Message
+86.3.2. Scenario 2: Output Triggered by Input
+86.3.3. Scenario 3: No Output Message
+86.4. Consumer Stub Generation
+
+===============================================================================
+87. Spring Cloud Contract Stub Runner
+87.1. Snapshot versions
+87.2. Publishing Stubs as JARs
+87.3. Stub Runner Core
+87.3.1. Retrieving stubs
+Stub downloading
+Classpath scanning
+87.3.2. Running stubs
+Limitations
+Running using main app
+HTTP Stubs
+Viewing registered mappings
+Messaging Stubs
+87.4. Stub Runner JUnit Rule
+87.4.1. Maven settings
+87.4.2. Providing fixed ports
+87.4.3. Fluent API
+87.4.4. Stub Runner with Spring
+87.5. Stub Runner Spring Cloud
+87.5.1. Stubbing Service Discovery
+Test profiles and service discovery
+87.5.2. Additional Configuration
+87.6. Stub Runner Boot Application
+87.6.1. How to use it?
+Stub Runner Server
+Stub Runner Server Fat Jar
+Spring Cloud CLI
+87.6.2. Endpoints
+HTTP
+Messaging
+87.6.3. Example
+87.6.4. Stub Runner Boot with Service Discovery
+87.7. Stubs Per Consumer
+87.8. Common
+87.8.1. Common Properties for JUnit and Spring
+87.8.2. Stub Runner Stubs IDs
+87.9. Stub Runner Docker
+87.9.1. How to use it
+87.9.2. Example of client side usage in a non JVM project
+
+===============================================================================
+88. Stub Runner for Messaging
+88.1. Stub triggering
+88.1.1. Trigger by Label
+88.1.2. Trigger by Group and Artifact Ids
+88.1.3. Trigger by Artifact Ids
+88.1.4. Trigger All Messages
+88.2. Stub Runner Integration
+88.2.1. Adding the Runner to the Project
+88.2.2. Disabling the functionality
+Scenario 1 (no input message)
+Scenario 2 (output triggered by input)
+Scenario 3 (input with no output)
+88.3. Stub Runner Stream
+88.3.1. Adding the Runner to the Project
+88.3.2. Disabling the functionality
+Scenario 1 (no input message)
+Scenario 2 (output triggered by input)
+Scenario 3 (input with no output)
+88.4. Stub Runner Spring AMQP
+88.4.1. Adding the Runner to the Project
+Triggering the message
+Spring AMQP Test Configuration
+
+===============================================================================
+89. Contract DSL
+89.1. Limitations
+89.2. Common Top-Level elements
+89.2.1. Description
+89.2.2. Name
+89.2.3. Ignoring Contracts
+89.2.4. Passing Values from Files
+89.2.5. HTTP Top-Level Elements
+89.3. Request
+89.4. Response
+89.5. Dynamic properties
+89.5.1. Dynamic properties inside the body
+89.5.2. Regular expressions
+89.5.3. Passing Optional Parameters
+89.5.4. Executing Custom Methods on the Server Side
+89.5.5. Referencing the Request from the Response
+89.5.6. Registering Your Own WireMock Extension
+89.5.7. Dynamic Properties in the Matchers Sections
+89.6. JAX-RS Support
+89.7. Async Support
+89.8. Working with Context Paths
+89.9. Messaging Top-Level Elements
+89.9.1. Output Triggered by a Method
+89.9.2. Output Triggered by a Message
+89.9.3. Consumer/Producer
+89.9.4. Common
+89.10. Multiple Contracts in One File
+
+===============================================================================
+90. Customization
+90.1. Extending the DSL
+90.1.1. Common JAR
+90.1.2. Adding the Dependency to the Project
+90.1.3. Test the Dependency in the Project’s Dependencies
+90.1.4. Test a Dependency in the Plugin’s Dependencies
+90.1.5. Referencing classes in DSLs
+
+===============================================================================
+91. Using the Pluggable Architecture
+91.1. Custom Contract Converter
+91.1.1. Pact Converter
+91.1.2. Pact Contract
+91.1.3. Pact for Producers
+91.1.4. Pact for Consumers
+91.2. Using the Custom Test Generator
+91.3. Using the Custom Stub Generator
+91.4. Using the Custom Stub Runner
+91.5. Using the Custom Stub Downloader
+
+===============================================================================
+92. Spring Cloud Contract WireMock
+92.1. Registering Stubs Automatically
+92.2. Using Files to Specify the Stub Bodies
+92.3. Alternative: Using JUnit Rules
+92.4. Relaxed SSL Validation for Rest Template
+92.5. WireMock and Spring MVC Mocks
+92.6. Customization of WireMock configuration
+92.7. Generating Stubs using REST Docs
+92.8. Generating Contracts by Using REST Docs
+
+===============================================================================
+93. Migrations
+93.1. 1.0.x → 1.1.x
+93.1.1. New structure of generated stubs
+93.2. 1.1.x → 1.2.x
+93.2.1. Custom HttpServerStub
+93.2.2. New packages for generated tests
+93.2.3. New Methods in TemplateProcessor
+93.2.4. RestAssured 3.0
+93.3. 1.2.x → 2.0.x
+93.3.1. No Camel support
+
+===============================================================================
+94. Links
+
+
+===============================================================================
+XIV. Spring Cloud Vault
+===============================================================================
+
+===============================================================================
+95. Quick Start
+
+===============================================================================
+96. Client Side Usage
+96.1. Authentication
+
+===============================================================================
+97. Authentication methods
+97.1. Token authentication
+97.2. AppId authentication
+97.2.1. Custom UserId
+97.3. AppRole authentication
+97.4. AWS-EC2 authentication
+97.5. AWS-IAM authentication
+97.6. TLS certificate authentication
+97.7. Cubbyhole authentication
+97.8. Kubernetes authentication
+
+===============================================================================
+98. Secret Backends
+98.1. Generic Backend
+98.2. Consul
+98.3. RabbitMQ
+98.4. AWS
+
+===============================================================================
+99. Database backends
+99.1. Database
+99.2. Apache Cassandra
+99.3. MongoDB
+99.4. MySQL
+99.5. PostgreSQL
+
+===============================================================================
+100. Configure PropertySourceLocator behavior
+
+===============================================================================
+101. Service Registry Configuration
+
+===============================================================================
+102. Vault Client Fail Fast
+
+===============================================================================
+103. Vault Client SSL configuration
+
+===============================================================================
+104. Lease lifecycle management (renewal and revocation)
+
+
+===============================================================================
+XV. Spring Cloud Gateway
+===============================================================================
+
+===============================================================================
+105. How to Include Spring Cloud Gateway
+
+===============================================================================
+106. Glossary
+
+===============================================================================
+107. How It Works
+
+===============================================================================
+108. Route Predicate Factories
+108.1. After Route Predicate Factory
+108.2. Before Route Predicate Factory
+108.3. Between Route Predicate Factory
+108.4. Cookie Route Predicate Factory
+108.5. Header Route Predicate Factory
+108.6. Host Route Predicate Factory
+108.7. Method Route Predicate Factory
+108.8. Path Route Predicate Factory
+108.9. Query Route Predicate Factory
+108.10. RemoteAddr Route Predicate Factory
+
+===============================================================================
+109. GatewayFilter Factories
+109.1. AddRequestHeader GatewayFilter Factory
+109.2. AddRequestParameter GatewayFilter Factory
+109.3. AddResponseHeader GatewayFilter Factory
+109.4. Hystrix GatewayFilter Factory
+109.5. PrefixPath GatewayFilter Factory
+109.6. PreserveHostHeader GatewayFilter Factory
+109.7. RequestRateLimiter GatewayFilter Factory
+109.8. RedirectTo GatewayFilter Factory
+109.9. RemoveNonProxyHeaders GatewayFilter Factory
+109.10. RemoveRequestHeader GatewayFilter Factory
+109.11. RemoveResponseHeader GatewayFilter Factory
+109.12. RewritePath GatewayFilter Factory
+109.13. SaveSession GatewayFilter Factory
+109.14. SecureHeaders GatewayFilter Factory
+109.15. SetPath GatewayFilter Factory
+109.16. SetResponseHeader GatewayFilter Factory
+109.17. SetStatus GatewayFilter Factory
+109.18. StripPrefix GatewayFilter Factory
+
+===============================================================================
+110. Global Filters
+110.1. Combined Global Filter and GatewayFilter Ordering
+110.2. Forward Routing Filter
+110.3. LoadBalancerClient Filter
+110.4. Netty Routing Filter
+110.5. Netty Write Response Filter
+110.6. RouteToRequestUrl Filter
+110.7. Websocket Routing Filter
+
+===============================================================================
+111. Configuration
+111.1. Fluent Java Routes API
+111.2. DiscoveryClient Route Definition Locator
+
+===============================================================================
+112. Actuator API
+
+===============================================================================
+113. Developer Guide
+113.1. Writing Custom Route Predicate Factories
+113.2. Writing Custom GatewayFilter Factories
+113.3. Writing Custom Global Filters
+113.4. Writing Custom Route Locators and Writers
+
+===============================================================================
+114. Building a Simple Gateway Using Spring MVC
+
+===============================================================================
+XVI. Appendix: Compendium of Configuration Properties
