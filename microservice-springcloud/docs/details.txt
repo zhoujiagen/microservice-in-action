@@ -44,6 +44,8 @@ public class EurekaRegistryApplicaiton {
   }
 }
 
+Spring Eureka info page: http://localhost:8761/
+
 === microservice-springcloud-netflixserver
 
 		<dependency>

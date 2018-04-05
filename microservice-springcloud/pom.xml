@@ -24,9 +24,7 @@
 		<module>../microservice-springcloud-netflixserver</module>
 		<module>../microservice-springcloud-netflixclient</module>
 
-
-
-		<!-- <module>../microservice-springcloud-atlas</module>
+		<!-- 
 		<module>../microservice-springcloud-feign</module>
 		<module>../microservice-springcloud-stream</module>
 		<module>../microservice-springcloud-bus</module>

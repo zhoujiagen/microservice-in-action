@@ -15,13 +15,12 @@ public class ConfigClientApplication {
 
   @Value("${spring.datasource.url}")
   private String jdbcUrl;
-  
+
   @RequestMapping("/jdbcurl")
   public Object url() {
     return jdbcUrl;
   }
-  
-  
+
   public static void main(String[] args) {
     ConfigurableApplicationContext ctx = SpringApplication.run(ConfigClientApplication.class, args);
 
