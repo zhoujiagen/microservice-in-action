@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -90,5 +92,25 @@ public class WebConfiguration // extends WebMvcConfigurerAdapter
   // 定义拦截器
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(new IncomingRequestHandlerInterceptor());
+  }
+
+  // Dubbo's DispatcherServlet
+  @Bean
+  public ServletRegistrationBean<com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet>
+      dubboDispatcherServlet() {
+    ServletRegistrationBean<com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet> bean =
+        new ServletRegistrationBean<>(
+            new com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet(), "/http/*", "/rest/*");
+    bean.setLoadOnStartup(1);
+    return bean;
+  }
+
+  @Bean
+  public ServletListenerRegistrationBean<com.alibaba.dubbo.remoting.http.servlet.BootstrapListener>
+      BootstrapListener() {
+    ServletListenerRegistrationBean<com.alibaba.dubbo.remoting.http.servlet.BootstrapListener> bean =
+        new ServletListenerRegistrationBean<com.alibaba.dubbo.remoting.http.servlet.BootstrapListener>(
+            new com.alibaba.dubbo.remoting.http.servlet.BootstrapListener());
+    return bean;
   }
 }

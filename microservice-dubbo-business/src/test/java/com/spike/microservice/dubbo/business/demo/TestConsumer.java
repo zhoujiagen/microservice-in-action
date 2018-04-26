@@ -1,5 +1,6 @@
 package com.spike.microservice.dubbo.business.demo;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,8 +19,20 @@ public class TestConsumer {
     System.out.println(hello); // 显示调用结果
 
     UserService userService = (UserService) context.getBean("userService");
+    Users newUsers = new Users();
+    newUsers.setName("add by consumer");
+    newUsers.setAge(31);
+    Integer newUSersId = userService.addUser(newUsers);
+    System.out.println(newUSersId);
     List<Users> users = userService.allUsers();
     System.out.println(users);
+
+    // halt
+    try {
+      System.in.read();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     context.close();
   }

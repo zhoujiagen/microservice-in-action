@@ -70,9 +70,63 @@
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId><!-- Trace need! -->
+			<artifactId>fastjson</artifactId><!-- Trace administration feature need! -->
 			<version>1.2.46</version>
 		</dependency>
+
+		<!-- REST START -->
+		<!--rest 规范，比如 Get, Path, MediaType 等 -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jdk-http</artifactId>
+			<version>3.0.19.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.19.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.0.19.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-netty4</artifactId>
+			<version>3.0.19.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>3.0.19.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+			<version>3.0.19.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--验证 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
+		<!-- REST END -->
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

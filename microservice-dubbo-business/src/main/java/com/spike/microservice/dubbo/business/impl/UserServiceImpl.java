@@ -18,7 +18,8 @@ public class UserServiceImpl implements UserService {
 
   @Transactional
   public Integer addUser(Users user) {
-    return userDao.insert(user);
+    userDao.insert(user);
+    return user.getId();
   }
 
   public List<Users> allUsers() {

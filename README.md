@@ -37,6 +37,7 @@ Microservice in action with Dubbo and Spring Cloud.
 # Progressing
 
 + Dubbo - basic usage
++ Dubbo - dubbox rest protocol extension usage 20180426
 + Spring Cloud - configuration
 + Spring Cloud - Netflix OSS Eurake
 
